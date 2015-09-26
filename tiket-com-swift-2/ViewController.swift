@@ -13,6 +13,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        let api = TiketAPI()
+        api.getTiketToken()
     }
 
     override func didReceiveMemoryWarning() {
