@@ -15,7 +15,9 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         let api = TiketAPI()
-        api.getTiketToken()
+        api.getTiketToken({(token) in
+            print("token : " + token)
+        })
     }
 
     override func didReceiveMemoryWarning() {
