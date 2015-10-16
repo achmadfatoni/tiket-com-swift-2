@@ -1,9 +1,11 @@
 PODS:
   - Alamofire (2.0.2)
+  - SwiftForms (1.0.2)
   - SwiftyJSON (2.2.1)
 
 DEPENDENCIES:
   - Alamofire (~> 2.0)
+  - SwiftForms
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`, branch `xcode7`)
 
 EXTERNAL SOURCES:
@@ -18,6 +20,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 8edbab00802a752bb5240cc2abe70e7e881488ad
+  SwiftForms: c439aca9cf462383a1292c028bd14915de42bf6b
   SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0
