@@ -10,26 +10,13 @@ import UIKit
 import SwiftForms
 
 class SearchFlightViewController: FormViewController {
+    
+    //var airportCodeArray = [String]()
+    var airportDictionary = [String:String]()
+    
+    var airportCodeArray = ["ARD", "AMQ", "ABU", "BJW", "BPN", "BTJ", "BDO", "BDJ", "DQJ", "BTH", "BUW", "BKS", "BEJ", "MTW", "BIK", "BMU", "BWX", "WUB", "UOL", "DPS", "ENE", "FKQ", "GLX", "GTO", "GNS", "CGK", "HLP", "DJB", "DJJ", "KNG", "KDI", "KTG", "KBU", "KOE", "LBJ", "LAH", "TKG", "LSW", "LOP", "LUW", "MLG", "MLN", "MJU", "MDC", "MKW", "MOF", "KNO", "MLK", "MNA", "MKQ", "MEQ", "OTI", "NBX", "NTX", "NNX", "PDG", "PKY", "PLM", "PLW", "PGK", "PKN", "PKU", "PUM", "PNK", "PSJ", "PSU", "RTI", "RTG", "SRI", "SMQ", "SXK", "YKR", "SRG", "RRZ", "DTB", "SNX", "SQG", "SOC", "SOQ", "SWQ", "SUB", "NAH", "TMC", "TJQ", "TNJ", "TJS", "TJG", "TRK", "TTE", "TIM", "KAZ", "TLI", "LUV", "UPG", "WGP", "WNI", "WMX", "WGI", "JOG", "ADL", "ASP", "AVV", "BNK", "BNE", "CNS", "CBR", "CFS", "DRW", "OOL", "HTI", "HIS", "HBA", "LST", "MKY", "MEL", "VIZ", "NTL", "PER", "MCY", "SYD", "TSV", "AYQ", "PPP", "CGP", "DEL", "DAC", "BWN", "PNH", "REP", "PEK", "CTU", "CKG", "CAN", "KWL", "HAK", "HGH", "KMG", "NNG", "NGB", "TAO", "PVG", "SWA", "SHE", "SZX", "TSN", "WUH", "XIY", "CMB", "NAN", "HKG", "AMD", "BLR", "MAA", "HYD", "COK", "CCU", "BOM", "TRV", "TRZ", "FUK", "KOJ", "KMJ", "MYJ", "NGO", "OIT", "OKA", "KIX", "CTS", "TAK", "HND", "NRT", "VTE", "MFM", "AOR", "BTU", "JHB", "KBR", "BKI", "KUL", "TGG", "KCH", "LGK", "MKZ", "MYY", "PEN", "SDK", "SBW", "SZB", "IPH", "TWU", "MDL", "RGN", "KTM", "AKL", "CHC", "DUD", "ZQN", "WLG", "BCD", "CEB", "CRK", "DVO", "ILO", "MNL", "PPS", "TAC", "JED", "SIN", "PUS", "ICN", "TPE", "BKK", "DMK", "CNX", "CEI", "HDY", "KBV", "KOP", "NST", "NAW", "HKT", "URT", "TST", "UBP", "UTH", "DIL", "ABU", "LGW", "HNL", "BMV", "DAD", "VDH", "HPH", "SGN", "HUI", "CXR", "HAN", "PQC", "UIH", "THD", "TBB", "VII"]
 
-    struct Static {
-        static let nameTag = "name"
-        static let passwordTag = "password"
-        static let lastNameTag = "lastName"
-        static let jobTag = "job"
-        static let emailTag = "email"
-        static let URLTag = "url"
-        static let phoneTag = "phone"
-        static let enabled = "enabled"
-        static let check = "check"
-        static let segmented = "segmented"
-        static let picker = "picker"
-        static let birthday = "birthday"
-        static let categories = "categories"
-        static let button = "button"
-        static let stepper = "stepper"
-        static let slider = "slider"
-        static let textView = "textview"
-    }
+
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -39,13 +26,34 @@ class SearchFlightViewController: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Submit", style: .Plain, target: self, action: "submit:")
+        let tiketApi = TiketAPI()
+        tiketApi.getTiketToken({(token) in
+            print("token : " + token)
+            
+            tiketApi.getAirport(token, completion: { (airports) -> Void in
+                print("---------- Airport ----------")
+                //print(airports)
+                for airport in airports {
+                    //print("---------- Airport Code ----------")
+                    var airportCode = airport["airport_code"].string!
+                    //print(airportCode)
+                    //self.airportCodeArray.append(airportCode)
+                    self.airportDictionary[airportCode] = airport["location_name"].string!
+                }
+                
+            })
+
+        })
+        
+        
     }
     
     /// MARK: Actions
     
     func submit(_: UIBarButtonItem!) {
         
-//        let message = self.form.formValues().description
+        let message = self.form.formValues().description
+        print(message)
         
 //        let alert: UIAlertView = UIAlertView(title: "Form output", message: message, delegate: nil, cancelButtonTitle: "OK")
 //        
@@ -63,47 +71,21 @@ class SearchFlightViewController: FormViewController {
         let section1 = FormSectionDescriptor()
         //departure airport
         var row: FormRowDescriptor! = FormRowDescriptor(tag: "departureAirportCode", rowType: .MultipleSelector, title: "Departure")
-        row.configuration[FormRowDescriptor.Configuration.Options] = [0, 1, 2, 3, 4]
+        row.configuration[FormRowDescriptor.Configuration.Options] = self.airportCodeArray
         row.configuration[FormRowDescriptor.Configuration.AllowsMultipleSelection] = false
         row.configuration[FormRowDescriptor.Configuration.TitleFormatterClosure] = { value in
-            switch( value ) {
-            case 0:
-                return "Restaurant"
-            case 1:
-                return "Pub"
-            case 2:
-                return "Shop"
-            case 3:
-                return "Hotel"
-            case 4:
-                return "Camping"
-            default:
-                return nil
-            }
-            } as TitleFormatterClosure
+            return self.airportDictionary[value as! String]
+        } as TitleFormatterClosure
         
         section1.addRow(row)
         
         // arrival airport
-        row = FormRowDescriptor(tag: "departureAirportCode", rowType: .MultipleSelector, title: "Arrival")
-        row.configuration[FormRowDescriptor.Configuration.Options] = [0, 1, 2, 3, 4]
+        row = FormRowDescriptor(tag: "arrivalAirportCode", rowType: .MultipleSelector, title: "Arrival")
+        row.configuration[FormRowDescriptor.Configuration.Options] = self.airportCodeArray
         row.configuration[FormRowDescriptor.Configuration.AllowsMultipleSelection] = false
         row.configuration[FormRowDescriptor.Configuration.TitleFormatterClosure] = { value in
-            switch( value ) {
-            case 0:
-                return "Restaurant"
-            case 1:
-                return "Pub"
-            case 2:
-                return "Shop"
-            case 3:
-                return "Hotel"
-            case 4:
-                return "Camping"
-            default:
-                return nil
-            }
-            } as TitleFormatterClosure
+            return self.airportDictionary[value as! String]
+        } as TitleFormatterClosure
         
         section1.addRow(row)
         
@@ -124,7 +106,7 @@ class SearchFlightViewController: FormViewController {
         row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = ["textField.textAlignment" : NSTextAlignment.Right.rawValue]
         section2.addRow(row)
         
-        row = FormRowDescriptor(tag: "infantPassenger", rowType: .Number, title: "infant")
+        row = FormRowDescriptor(tag: "infantPassenger", rowType: .Number, title: "Infant")
         row.value = "0"
         row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = ["textField.textAlignment" : NSTextAlignment.Right.rawValue]
         section2.addRow(row)

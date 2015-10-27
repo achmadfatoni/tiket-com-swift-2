@@ -13,15 +13,18 @@ import SwiftyJSON
 class TiketAPI {
     
     //secret key : "64de419c65901078dc7d026194357579"
+    let tiketComURL = "http://api.sandbox.tiket.com/"
+    let defaults    = NSUserDefaults.standardUserDefaults()
+    let output      = "json"
+
     
     func getTiketToken(completion : (token : String) -> Void) {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        let urlString = "http://api.sandbox.tiket.com/apiv1/payexpress"
+        let urlString = self.tiketComURL + "apiv1/payexpress"
         
         let param = [
-            "method" : "getToken",
+            "method"    : "getToken",
             "secretkey" : "64de419c65901078dc7d026194357579",
-            "output" : "json"
+            "output"    : self.output
         ]
         Alamofire.request(.GET, urlString, parameters : param)
             .responseJSON { (request, response, result) in
@@ -30,7 +33,7 @@ class TiketAPI {
                 //defaults.removeObjectForKey("token")
                 
                 
-                var token = defaults.objectForKey("token") as? String
+                var token = self.defaults.objectForKey("token") as? String
                 print("token : ")
                 print(token)
                 
@@ -61,19 +64,65 @@ class TiketAPI {
                     print("---------- TOKEN ----------")
                     let json = JSON(value)
                     token = json["token"].string!
-                    defaults.setObject(token, forKey: "token")
+                    self.defaults.setObject(token, forKey: "token")
                     
                     print("---------- New Token ----------")
-                    token = defaults.objectForKey("token") as? String
+                    token = self.defaults.objectForKey("token") as? String
                     completion(token : token!)
                     
                 }else {
                     print("---------- old token ----------")
-                    token = defaults.objectForKey("token") as? String
+                    token = self.defaults.objectForKey("token") as? String
                     completion(token : token!)
                 }
                 
         }
         
+    }
+    
+    func getAirport(token: String, completion: (airports: [JSON]) -> Void){
+        print("token inside getAirport function \(token)")
+        
+        let urlgetAirports  = self.tiketComURL + "flight_api/all_airport"
+
+        let param = [
+            "token"     : token,
+            "output"    : self.output
+        ]
+        
+        Alamofire.request(.GET, urlgetAirports, parameters : param)
+            .responseJSON { (request, response, result) in
+                print("---------- REQUEST ----------")
+                print(request)
+                print("\n")
+                
+                print("---------- RESPONSE ----------")
+                print(response)
+                print("\n")
+                
+                print("---------- RESULT ----------")
+                print(result)
+                debugPrint(result)
+                print("\n")
+                
+                guard let value = result.value else {
+                    print("Error: did not receive data")
+                    return
+                }
+                guard result.error == nil else {
+                    print("error calling GET on /posts/1")
+                    print(result.error)
+                    return
+                }
+                
+                print("---------- AIRPORT ----------")
+                let json = JSON(value)
+                let airports = json["all_airport"]["airport"].array!
+                print(airports)
+
+                
+                completion(airports: airports)
+        }
+
     }
 }
