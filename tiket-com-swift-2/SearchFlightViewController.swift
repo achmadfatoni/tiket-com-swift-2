@@ -26,6 +26,8 @@ class SearchFlightViewController: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Submit", style: .Plain, target: self, action: "submit:")
+        
+        
         let tiketApi = TiketAPI()
         tiketApi.getTiketToken({(token) in
             print("token : " + token)
@@ -52,13 +54,25 @@ class SearchFlightViewController: FormViewController {
     
     func submit(_: UIBarButtonItem!) {
         
-        let message = self.form.formValues().description
-        print(message)
+        let validateForm        = self.form.validateForm()
         
-//        let alert: UIAlertView = UIAlertView(title: "Form output", message: message, delegate: nil, cancelButtonTitle: "OK")
-//        
-//        alert.show()
+        if validateForm == nil {
+            
+            performSegueWithIdentifier("goToFlight", sender: nil)
+        
+        }else{
+            let alertController = UIAlertController(title: "Validation Failed", message: "\(validateForm.title) required", preferredStyle: .Alert)
+            
+            let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            alertController.addAction(defaultAction)
+            
+            presentViewController(alertController, animated: true, completion: nil)
+        }
+        
+        
     }
+    
+
     
     /// MARK: Private interface
     
@@ -73,6 +87,7 @@ class SearchFlightViewController: FormViewController {
         var row: FormRowDescriptor! = FormRowDescriptor(tag: "departureAirportCode", rowType: .MultipleSelector, title: "Departure")
         row.configuration[FormRowDescriptor.Configuration.Options] = self.airportCodeArray
         row.configuration[FormRowDescriptor.Configuration.AllowsMultipleSelection] = false
+        row.configuration[FormRowDescriptor.Configuration.Required] = true
         row.configuration[FormRowDescriptor.Configuration.TitleFormatterClosure] = { value in
             return self.airportDictionary[value as! String]
         } as TitleFormatterClosure
