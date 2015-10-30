@@ -57,10 +57,10 @@
             </objects>
             <point key="canvasLocation" x="633.5" y="1084.5"/>
         </scene>
-        <!--Table View Controller-->
+        <!--FlightsVC-->
         <scene sceneID="Iqo-6Y-p8Q">
             <objects>
-                <tableViewController id="Xpz-95-gIB" sceneMemberID="viewController">
+                <tableViewController id="Xpz-95-gIB" customClass="FlightsVC" customModule="tiket_com_swift_2" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="WGs-mt-f74">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

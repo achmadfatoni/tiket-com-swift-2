@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9827A21E9D1AC7251882ED06 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD79D9EBEAAF80BB65FA4976 /* Pods.framework */; };
+		FF1FA3B01BE357B500F4A078 /* FlightsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1FA3AF1BE357B500F4A078 /* FlightsVC.swift */; };
 		FF851A8E1BD15A10007ED3F6 /* SearchFlightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF851A8D1BD15A10007ED3F6 /* SearchFlightViewController.swift */; };
 		FFC4E26F1BB6FC55001A6F42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4E26E1BB6FC55001A6F42 /* AppDelegate.swift */; };
 		FFC4E2711BB6FC55001A6F42 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4E2701BB6FC55001A6F42 /* ViewController.swift */; };
@@ -40,6 +41,7 @@
 		54B803030BE3F33C8D96032B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		BD79D9EBEAAF80BB65FA4976 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0C3739B29A28B87D2944B83 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		FF1FA3AF1BE357B500F4A078 /* FlightsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlightsVC.swift; sourceTree = "<group>"; };
 		FF851A8D1BD15A10007ED3F6 /* SearchFlightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFlightViewController.swift; sourceTree = "<group>"; };
 		FFC4E26B1BB6FC55001A6F42 /* tiket-com-swift-2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tiket-com-swift-2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFC4E26E1BB6FC55001A6F42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				FF851A8D1BD15A10007ED3F6 /* SearchFlightViewController.swift */,
+				FF1FA3AF1BE357B500F4A078 /* FlightsVC.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				FFC4E2A01BB6FE4D001A6F42 /* TiketAPI.swift in Sources */,
 				FFC4E2711BB6FC55001A6F42 /* ViewController.swift in Sources */,
 				FFC4E26F1BB6FC55001A6F42 /* AppDelegate.swift in Sources */,
+				FF1FA3B01BE357B500F4A078 /* FlightsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

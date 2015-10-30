@@ -14,8 +14,9 @@ class SearchFlightViewController: FormViewController {
     
     let tiketApi = TiketAPI()
     
-    //var airportCodeArray = [String]()
-    var airportDictionary = [String:String]()
+    //var airportCodeArray  = [String]()
+    var airportDictionary   = [String:String]()
+    var flights:JSON        = []
     
     var airportCodeArray = ["ARD", "AMQ", "ABU", "BJW", "BPN", "BTJ", "BDO", "BDJ", "DQJ", "BTH", "BUW", "BKS", "BEJ", "MTW", "BIK", "BMU", "BWX", "WUB", "UOL", "DPS", "ENE", "FKQ", "GLX", "GTO", "GNS", "CGK", "HLP", "DJB", "DJJ", "KNG", "KDI", "KTG", "KBU", "KOE", "LBJ", "LAH", "TKG", "LSW", "LOP", "LUW", "MLG", "MLN", "MJU", "MDC", "MKW", "MOF", "KNO", "MLK", "MNA", "MKQ", "MEQ", "OTI", "NBX", "NTX", "NNX", "PDG", "PKY", "PLM", "PLW", "PGK", "PKN", "PKU", "PUM", "PNK", "PSJ", "PSU", "RTI", "RTG", "SRI", "SMQ", "SXK", "YKR", "SRG", "RRZ", "DTB", "SNX", "SQG", "SOC", "SOQ", "SWQ", "SUB", "NAH", "TMC", "TJQ", "TNJ", "TJS", "TJG", "TRK", "TTE", "TIM", "KAZ", "TLI", "LUV", "UPG", "WGP", "WNI", "WMX", "WGI", "JOG", "ADL", "ASP", "AVV", "BNK", "BNE", "CNS", "CBR", "CFS", "DRW", "OOL", "HTI", "HIS", "HBA", "LST", "MKY", "MEL", "VIZ", "NTL", "PER", "MCY", "SYD", "TSV", "AYQ", "PPP", "CGP", "DEL", "DAC", "BWN", "PNH", "REP", "PEK", "CTU", "CKG", "CAN", "KWL", "HAK", "HGH", "KMG", "NNG", "NGB", "TAO", "PVG", "SWA", "SHE", "SZX", "TSN", "WUH", "XIY", "CMB", "NAN", "HKG", "AMD", "BLR", "MAA", "HYD", "COK", "CCU", "BOM", "TRV", "TRZ", "FUK", "KOJ", "KMJ", "MYJ", "NGO", "OIT", "OKA", "KIX", "CTS", "TAK", "HND", "NRT", "VTE", "MFM", "AOR", "BTU", "JHB", "KBR", "BKI", "KUL", "TGG", "KCH", "LGK", "MKZ", "MYY", "PEN", "SDK", "SBW", "SZB", "IPH", "TWU", "MDL", "RGN", "KTM", "AKL", "CHC", "DUD", "ZQN", "WLG", "BCD", "CEB", "CRK", "DVO", "ILO", "MNL", "PPS", "TAC", "JED", "SIN", "PUS", "ICN", "TPE", "BKK", "DMK", "CNX", "CEI", "HDY", "KBV", "KOP", "NST", "NAW", "HKT", "URT", "TST", "UBP", "UTH", "DIL", "ABU", "LGW", "HNL", "BMV", "DAD", "VDH", "HPH", "SGN", "HUI", "CXR", "HAN", "PQC", "UIH", "THD", "TBB", "VII"]
 
@@ -94,10 +95,11 @@ class SearchFlightViewController: FormViewController {
             ]
             print(params)
             
-//            self.tiketApi.searchFlight(params, completion: { (airports) -> Void in
-//                print(params)
-//            })
-            //performSegueWithIdentifier("goToFlight", sender: nil)
+            self.tiketApi.searchFlight(params, completion: { (flights) -> Void in
+                self.flights = flights
+                self.performSegueWithIdentifier("goToFlight", sender: nil)
+            })
+            
         
         }else{
             let alertController = UIAlertController(title: "Validation Failed", message: "\(validateForm.title) required", preferredStyle: .Alert)
@@ -168,5 +170,14 @@ class SearchFlightViewController: FormViewController {
         form.sections = [section1, section2]
         
         self.form = form
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "goToFlight" {
+            var flightsVC = segue.destinationViewController as! FlightsVC
+            
+            flightsVC.flights = self.flights
+        
+        }
     }
 }
