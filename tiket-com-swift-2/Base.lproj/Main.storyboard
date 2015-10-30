@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dsB-uY-00D">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -67,15 +68,54 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="hBS-oQ-jUT">
-                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" rowHeight="80" id="hBS-oQ-jUT" customClass="FlightCell" customModule="tiket_com_swift_2" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hBS-oQ-jUT" id="ihh-ie-8Pp">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="79"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="751" verticalHuggingPriority="751" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="airline_name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gBr-Tu-QUS">
+                                            <rect key="frame" x="16" y="8" width="95" height="21"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" text="time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yi9-sl-Nl7">
+                                            <rect key="frame" x="16" y="50" width="34" height="21"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="price_value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TVA-f8-6TO">
+                                            <rect key="frame" x="260" y="29" width="85" height="21"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                     <animations/>
+                                    <constraints>
+                                        <constraint firstItem="gBr-Tu-QUS" firstAttribute="leading" secondItem="ihh-ie-8Pp" secondAttribute="leadingMargin" constant="8" id="KAC-mw-In4"/>
+                                        <constraint firstItem="TVA-f8-6TO" firstAttribute="centerY" secondItem="ihh-ie-8Pp" secondAttribute="centerY" id="NA9-AH-pd5"/>
+                                        <constraint firstAttribute="topMargin" secondItem="gBr-Tu-QUS" secondAttribute="top" id="Neq-Mv-SNw"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="yi9-sl-Nl7" secondAttribute="bottom" id="Yag-jD-Y9q"/>
+                                        <constraint firstItem="yi9-sl-Nl7" firstAttribute="top" secondItem="gBr-Tu-QUS" secondAttribute="bottom" constant="21" id="d1t-FM-cKo"/>
+                                        <constraint firstItem="yi9-sl-Nl7" firstAttribute="leading" secondItem="ihh-ie-8Pp" secondAttribute="leadingMargin" constant="8" id="vKs-bP-yoa"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="TVA-f8-6TO" secondAttribute="trailing" constant="30" id="AAi-WA-i0E"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="airlaneName" destination="gBr-Tu-QUS" id="hL2-QY-z8r"/>
+                                    <outlet property="priceValue" destination="TVA-f8-6TO" id="zac-CA-Dto"/>
+                                    <outlet property="time" destination="yi9-sl-Nl7" id="EYy-JN-SnN"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
