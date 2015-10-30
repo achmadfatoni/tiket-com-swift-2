@@ -174,7 +174,8 @@ class SearchFlightViewController: FormViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "goToFlight" {
-            var flightsVC = segue.destinationViewController as! FlightsVC
+            navigationItem.title = " "
+            let flightsVC = segue.destinationViewController as! FlightsVC
             
             flightsVC.flights = self.flights
         

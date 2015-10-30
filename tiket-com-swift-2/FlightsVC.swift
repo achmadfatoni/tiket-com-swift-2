@@ -17,6 +17,8 @@ class FlightsVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "\(self.flights["go_det"]["dep_airport"]["city_name"].string!) - \(self.flights["go_det"]["arr_airport"]["city_name"].string!)"
+        
         print(self.flights)
 
         // Uncomment the following line to preserve selection between presentations
