@@ -80,6 +80,7 @@ class TiketAPI {
         
     }
     
+    
     func getAirport(token: String, completion: (airports: [JSON]) -> Void){
         print("token inside getAirport function \(token)")
         
@@ -124,5 +125,9 @@ class TiketAPI {
                 completion(airports: airports)
         }
 
+    }
+    
+    func searchFlight(params: [String:AnyObject], completion: (airports: [JSON]) -> Void){
+        print(params)
     }
 }

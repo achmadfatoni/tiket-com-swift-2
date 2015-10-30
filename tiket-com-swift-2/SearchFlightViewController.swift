@@ -8,8 +8,11 @@
 
 import UIKit
 import SwiftForms
+import SwiftyJSON
 
 class SearchFlightViewController: FormViewController {
+    
+    let tiketApi = TiketAPI()
     
     //var airportCodeArray = [String]()
     var airportDictionary = [String:String]()
@@ -28,16 +31,15 @@ class SearchFlightViewController: FormViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Submit", style: .Plain, target: self, action: "submit:")
         
         
-        let tiketApi = TiketAPI()
-        tiketApi.getTiketToken({(token) in
+        self.tiketApi.getTiketToken({(token) in
             print("token : " + token)
             
-            tiketApi.getAirport(token, completion: { (airports) -> Void in
+            self.tiketApi.getAirport(token, completion: { (airports) -> Void in
                 print("---------- Airport ----------")
                 //print(airports)
                 for airport in airports {
                     //print("---------- Airport Code ----------")
-                    var airportCode = airport["airport_code"].string!
+                    let airportCode = airport["airport_code"].string!
                     //print(airportCode)
                     //self.airportCodeArray.append(airportCode)
                     self.airportDictionary[airportCode] = airport["location_name"].string!
@@ -57,8 +59,45 @@ class SearchFlightViewController: FormViewController {
         let validateForm        = self.form.validateForm()
         
         if validateForm == nil {
+            let formValues = self.form.formValues()
             
-            performSegueWithIdentifier("goToFlight", sender: nil)
+            let departureAirportCode    = "\(formValues["departureAirportCode"]!)"
+            let arrivalAirportCode      = "\(formValues["arrivalAirportCode"]!)"
+            
+            let adult   = formValues["adultPassenger"] as! String
+            let child   = formValues["childPassenger"] as! String
+            let infant  = formValues["infantPassenger"] as! String
+            
+            //prepare param departure airport code
+            let d       = departureAirportCode.stringByReplacingOccurrencesOfString("(", withString: "").stringByReplacingOccurrencesOfString(")", withString: "").stringByReplacingOccurrencesOfString("\n", withString: "").stringByReplacingOccurrencesOfString(" ", withString: "")
+            
+            
+            let a = arrivalAirportCode.stringByReplacingOccurrencesOfString("(", withString: "").stringByReplacingOccurrencesOfString(")", withString: "").stringByReplacingOccurrencesOfString("\n", withString: "").stringByReplacingOccurrencesOfString(" ", withString: "")
+            
+            
+            
+            let date = NSDateFormatter()
+            date.dateFormat = "yyyy-MM-dd"
+            let departureDate = date.stringFromDate(self.valueForTag("departDate") as! NSDate)
+            
+            //date format
+            //YYYY-MM-DD
+            
+            let params = [
+                "d"			:	d,
+                "a"			:	a,
+                "date"		:	departureDate,
+                //"ret_date"	:	$ret_date,
+                "adult"		:	adult,
+                "child"		:	child,
+                "infant"	:	infant
+            ]
+            print(params)
+            
+//            self.tiketApi.searchFlight(params, completion: { (airports) -> Void in
+//                print(params)
+//            })
+            //performSegueWithIdentifier("goToFlight", sender: nil)
         
         }else{
             let alertController = UIAlertController(title: "Validation Failed", message: "\(validateForm.title) required", preferredStyle: .Alert)
