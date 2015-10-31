@@ -96,8 +96,24 @@ class SearchFlightViewController: FormViewController {
             print(params)
             
             self.tiketApi.searchFlight(params, completion: { (flights) -> Void in
-                self.flights = flights
-                self.performSegueWithIdentifier("goToFlight", sender: nil)
+                
+                
+                var count = flights["departures"]["result"].count as! Int
+                print(count)
+                
+                if count == 0 {
+                    let alertNoFlight = UIAlertController(title: "Error", message: "No Flight found", preferredStyle: .Alert)
+                    
+                    let cancelAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                    alertNoFlight.addAction(cancelAction)
+                    
+                    self.presentViewController(alertNoFlight, animated: true, completion: nil)
+                }else {
+                    self.flights = flights
+                    self.performSegueWithIdentifier("goToFlight", sender: nil)
+                }
+
+                
             })
             
         
