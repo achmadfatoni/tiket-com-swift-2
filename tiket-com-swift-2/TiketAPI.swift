@@ -170,4 +170,47 @@ class TiketAPI {
         
         
     }
+    
+    func addOrder(var params: [String:AnyObject], completion: (response: JSON) -> Void){
+        
+        let urlAddOrder  = self.tiketComURL + "order/add/flight"
+        
+        params["token"]     = self.token
+        params["output"]    = self.output
+        
+        print(params)
+        
+        Alamofire.request(.GET, urlAddOrder, parameters : params)
+            .responseJSON { (request, response, result) in
+                print("---------- REQUEST ----------")
+                print(request)
+                print("\n")
+                
+                print("---------- RESPONSE ----------")
+                print(response)
+                print("\n")
+                
+                print("---------- RESULT ----------")
+                print(result)
+                debugPrint(result)
+                print("\n")
+                
+                guard let value = result.value else {
+                    print("Error: did not receive data")
+                    return
+                }
+                guard result.error == nil else {
+                    print("error calling GET on /posts/1")
+                    print(result.error)
+                    return
+                }
+                
+                print("---------- Response ----------")
+                let json = JSON(value)
+
+                completion(response: json)
+        }
+        
+        
+    }
 }

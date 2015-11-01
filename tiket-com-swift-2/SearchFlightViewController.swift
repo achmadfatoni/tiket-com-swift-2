@@ -103,7 +103,7 @@ class SearchFlightViewController: FormViewController {
             
             self.tiketApi.searchFlight(params, completion: { (flights) -> Void in
                 
-                 SwiftSpinner.hide()
+                SwiftSpinner.hide()
                 var count = flights["departures"]["result"].count as! Int
                 print(count)
                 

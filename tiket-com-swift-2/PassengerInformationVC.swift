@@ -8,9 +8,11 @@
 
 import UIKit
 import SwiftForms
+import SwiftSpinner
 
 class PassengerInformationVC: FormViewController {
-    
+
+    let tiketApi = TiketAPI()
     let defaults = NSUserDefaults.standardUserDefaults()
     var flightId = ""
     var numberOfpassengers = NumberOfPassengers()
@@ -51,7 +53,29 @@ class PassengerInformationVC: FormViewController {
         let validateForm        = self.form.validateForm()
         
         if validateForm == nil {
-            let formValues = self.form.formValues()
+            var formValues = self.form.formValues()
+            
+            print("---------- Form Values ----------")
+            print(formValues);
+            
+            var params = [String:AnyObject]()
+            params["flight_id"] = self.flightId
+            
+            for (key, value) in formValues {
+                params[key as! String] = value
+                print("key: \(key) value: \(value)")
+            }
+            
+            print("---------- Params ----------")
+            print(params)
+
+            SwiftSpinner.show("Adding order")
+            
+            self.tiketApi.addOrder(params, completion: { (response) -> Void in
+                SwiftSpinner.hide()
+                print(response)
+            })
+
 
             
         }else{
