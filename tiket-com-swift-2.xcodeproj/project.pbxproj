@@ -11,6 +11,8 @@
 		FF1FA3B01BE357B500F4A078 /* FlightsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1FA3AF1BE357B500F4A078 /* FlightsVC.swift */; };
 		FF1FA3B31BE35EC000F4A078 /* FlightCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1FA3B21BE35EC000F4A078 /* FlightCell.swift */; };
 		FF851A8E1BD15A10007ED3F6 /* SearchFlightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF851A8D1BD15A10007ED3F6 /* SearchFlightViewController.swift */; };
+		FF994F6F1BE4FD2E004E3873 /* PassengerInformationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF994F6E1BE4FD2E004E3873 /* PassengerInformationVC.swift */; };
+		FF994F721BE505C4004E3873 /* NumberOfPassengers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF994F711BE505C4004E3873 /* NumberOfPassengers.swift */; };
 		FFC4E26F1BB6FC55001A6F42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4E26E1BB6FC55001A6F42 /* AppDelegate.swift */; };
 		FFC4E2711BB6FC55001A6F42 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4E2701BB6FC55001A6F42 /* ViewController.swift */; };
 		FFC4E2741BB6FC55001A6F42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFC4E2721BB6FC55001A6F42 /* Main.storyboard */; };
@@ -45,6 +47,8 @@
 		FF1FA3AF1BE357B500F4A078 /* FlightsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlightsVC.swift; sourceTree = "<group>"; };
 		FF1FA3B21BE35EC000F4A078 /* FlightCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlightCell.swift; sourceTree = "<group>"; };
 		FF851A8D1BD15A10007ED3F6 /* SearchFlightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFlightViewController.swift; sourceTree = "<group>"; };
+		FF994F6E1BE4FD2E004E3873 /* PassengerInformationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassengerInformationVC.swift; sourceTree = "<group>"; };
+		FF994F711BE505C4004E3873 /* NumberOfPassengers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberOfPassengers.swift; sourceTree = "<group>"; };
 		FFC4E26B1BB6FC55001A6F42 /* tiket-com-swift-2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tiket-com-swift-2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFC4E26E1BB6FC55001A6F42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFC4E2701BB6FC55001A6F42 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -117,8 +121,18 @@
 			children = (
 				FF851A8D1BD15A10007ED3F6 /* SearchFlightViewController.swift */,
 				FF1FA3AF1BE357B500F4A078 /* FlightsVC.swift */,
+				FF994F6E1BE4FD2E004E3873 /* PassengerInformationVC.swift */,
 			);
 			name = ViewController;
+			sourceTree = "<group>";
+		};
+		FF994F701BE504E6004E3873 /* TiketCom */ = {
+			isa = PBXGroup;
+			children = (
+				FFC4E29F1BB6FE4D001A6F42 /* TiketAPI.swift */,
+				FF994F711BE505C4004E3873 /* NumberOfPassengers.swift */,
+			);
+			name = TiketCom;
 			sourceTree = "<group>";
 		};
 		FFC4E2621BB6FC55001A6F42 = {
@@ -146,10 +160,10 @@
 		FFC4E26D1BB6FC55001A6F42 /* tiket-com-swift-2 */ = {
 			isa = PBXGroup;
 			children = (
+				FF994F701BE504E6004E3873 /* TiketCom */,
 				FF1FA3B11BE35E8900F4A078 /* ViewCell */,
 				FF851A8C1BD159BA007ED3F6 /* ViewController */,
 				FFC4E26E1BB6FC55001A6F42 /* AppDelegate.swift */,
-				FFC4E29F1BB6FE4D001A6F42 /* TiketAPI.swift */,
 				FFC4E2701BB6FC55001A6F42 /* ViewController.swift */,
 				FFC4E2721BB6FC55001A6F42 /* Main.storyboard */,
 				FFC4E2781BB6FC55001A6F42 /* Assets.xcassets */,
@@ -363,6 +377,8 @@
 				FF1FA3B31BE35EC000F4A078 /* FlightCell.swift in Sources */,
 				FFC4E2A01BB6FE4D001A6F42 /* TiketAPI.swift in Sources */,
 				FFC4E2711BB6FC55001A6F42 /* ViewController.swift in Sources */,
+				FF994F721BE505C4004E3873 /* NumberOfPassengers.swift in Sources */,
+				FF994F6F1BE4FD2E004E3873 /* PassengerInformationVC.swift in Sources */,
 				FFC4E26F1BB6FC55001A6F42 /* AppDelegate.swift in Sources */,
 				FF1FA3B01BE357B500F4A078 /* FlightsVC.swift in Sources */,
 			);

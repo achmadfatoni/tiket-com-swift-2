@@ -8,10 +8,13 @@
 
 import UIKit
 import SwiftyJSON
+import SwiftForms
 
 class FlightsVC: UITableViewController {
 
     var flights: JSON = []
+    var flightId:String = ""
+    var numberOfPassengers  = NumberOfPassengers()
     
     
     override func viewDidLoad() {
@@ -59,7 +62,30 @@ class FlightsVC: UITableViewController {
         cell.airlaneName.text = indexPath["airlines_name"].string!
         cell.priceValue.text  = "IDR " + indexPath["price_value"].string!
         cell.time.text        = indexPath["simple_departure_time"].string! + " - " + indexPath["simple_arrival_time"].string!
+        
+        cell.flightId         = indexPath["flight_id"].string!
+        
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = self.tableView.cellForRowAtIndexPath(indexPath) as! FlightCell
+        
+        self.flightId = cell.flightId
+        
+        performSegueWithIdentifier("goToPassengerInformation", sender: nil)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "goToPassengerInformation" {
+            navigationItem.title = " "
+            
+            let passengerInformationVC                  = segue.destinationViewController as! PassengerInformationVC
+            
+            passengerInformationVC.numberOfpassengers   = self.numberOfPassengers
+            passengerInformationVC.flightId             = self.flightId
+            
+        }
     }
 
 

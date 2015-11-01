@@ -17,6 +17,8 @@ class FlightCell: UITableViewCell {
     
     @IBOutlet weak var priceValue: UILabel!
     
+    var flightId = ""
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

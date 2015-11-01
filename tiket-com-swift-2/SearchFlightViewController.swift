@@ -9,14 +9,15 @@
 import UIKit
 import SwiftForms
 import SwiftyJSON
+import SwiftSpinner
 
 class SearchFlightViewController: FormViewController {
     
     let tiketApi = TiketAPI()
     
-    //var airportCodeArray  = [String]()
     var airportDictionary   = [String:String]()
     var flights:JSON        = []
+    var numberOfPassengers  = NumberOfPassengers()
     
     var airportCodeArray = ["ARD", "AMQ", "ABU", "BJW", "BPN", "BTJ", "BDO", "BDJ", "DQJ", "BTH", "BUW", "BKS", "BEJ", "MTW", "BIK", "BMU", "BWX", "WUB", "UOL", "DPS", "ENE", "FKQ", "GLX", "GTO", "GNS", "CGK", "HLP", "DJB", "DJJ", "KNG", "KDI", "KTG", "KBU", "KOE", "LBJ", "LAH", "TKG", "LSW", "LOP", "LUW", "MLG", "MLN", "MJU", "MDC", "MKW", "MOF", "KNO", "MLK", "MNA", "MKQ", "MEQ", "OTI", "NBX", "NTX", "NNX", "PDG", "PKY", "PLM", "PLW", "PGK", "PKN", "PKU", "PUM", "PNK", "PSJ", "PSU", "RTI", "RTG", "SRI", "SMQ", "SXK", "YKR", "SRG", "RRZ", "DTB", "SNX", "SQG", "SOC", "SOQ", "SWQ", "SUB", "NAH", "TMC", "TJQ", "TNJ", "TJS", "TJG", "TRK", "TTE", "TIM", "KAZ", "TLI", "LUV", "UPG", "WGP", "WNI", "WMX", "WGI", "JOG", "ADL", "ASP", "AVV", "BNK", "BNE", "CNS", "CBR", "CFS", "DRW", "OOL", "HTI", "HIS", "HBA", "LST", "MKY", "MEL", "VIZ", "NTL", "PER", "MCY", "SYD", "TSV", "AYQ", "PPP", "CGP", "DEL", "DAC", "BWN", "PNH", "REP", "PEK", "CTU", "CKG", "CAN", "KWL", "HAK", "HGH", "KMG", "NNG", "NGB", "TAO", "PVG", "SWA", "SHE", "SZX", "TSN", "WUH", "XIY", "CMB", "NAN", "HKG", "AMD", "BLR", "MAA", "HYD", "COK", "CCU", "BOM", "TRV", "TRZ", "FUK", "KOJ", "KMJ", "MYJ", "NGO", "OIT", "OKA", "KIX", "CTS", "TAK", "HND", "NRT", "VTE", "MFM", "AOR", "BTU", "JHB", "KBR", "BKI", "KUL", "TGG", "KCH", "LGK", "MKZ", "MYY", "PEN", "SDK", "SBW", "SZB", "IPH", "TWU", "MDL", "RGN", "KTM", "AKL", "CHC", "DUD", "ZQN", "WLG", "BCD", "CEB", "CRK", "DVO", "ILO", "MNL", "PPS", "TAC", "JED", "SIN", "PUS", "ICN", "TPE", "BKK", "DMK", "CNX", "CEI", "HDY", "KBV", "KOP", "NST", "NAW", "HKT", "URT", "TST", "UBP", "UTH", "DIL", "ABU", "LGW", "HNL", "BMV", "DAD", "VDH", "HPH", "SGN", "HUI", "CXR", "HAN", "PQC", "UIH", "THD", "TBB", "VII"]
 
@@ -29,9 +30,9 @@ class SearchFlightViewController: FormViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Submit", style: .Plain, target: self, action: "submit:")
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .Plain, target: self, action: "submit:")
         
-        
+        SwiftSpinner.show("Loading...")
         self.tiketApi.getTiketToken({(token) in
             print("token : " + token)
             
@@ -41,14 +42,15 @@ class SearchFlightViewController: FormViewController {
                 for airport in airports {
                     //print("---------- Airport Code ----------")
                     let airportCode = airport["airport_code"].string!
-                    //print(airportCode)
-                    //self.airportCodeArray.append(airportCode)
+                    
                     self.airportDictionary[airportCode] = airport["location_name"].string!
                 }
                 
             })
 
         })
+        self.loadForm()
+        SwiftSpinner.hide()
         
         
     }
@@ -84,6 +86,8 @@ class SearchFlightViewController: FormViewController {
             //date format
             //YYYY-MM-DD
             
+            self.numberOfPassengers = NumberOfPassengers(adult: Int(adult)!, child: Int(child)!, infant: Int(infant)!)
+            
             let params = [
                 "d"			:	d,
                 "a"			:	a,
@@ -95,9 +99,11 @@ class SearchFlightViewController: FormViewController {
             ]
             print(params)
             
+            SwiftSpinner.show("Searching flight...")
+            
             self.tiketApi.searchFlight(params, completion: { (flights) -> Void in
                 
-                
+                 SwiftSpinner.hide()
                 var count = flights["departures"]["result"].count as! Int
                 print(count)
                 
@@ -193,6 +199,7 @@ class SearchFlightViewController: FormViewController {
             navigationItem.title = " "
             let flightsVC = segue.destinationViewController as! FlightsVC
             
+            flightsVC.numberOfPassengers = self.numberOfPassengers
             flightsVC.flights = self.flights
         
         }

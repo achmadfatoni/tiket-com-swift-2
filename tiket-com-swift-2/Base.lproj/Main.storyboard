@@ -123,10 +123,44 @@
                             <outlet property="delegate" destination="Xpz-95-gIB" id="rVD-x8-Ci9"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="bfP-F0-AE4" kind="show" identifier="goToPassengerInformation" id="oEu-cf-sGF"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eec-Jb-ijp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1181" y="1051"/>
+            <point key="canvasLocation" x="1208.5" y="1084.5"/>
+        </scene>
+        <!--Passenger InformationVC-->
+        <scene sceneID="3du-me-qVc">
+            <objects>
+                <tableViewController id="bfP-F0-AE4" customClass="PassengerInformationVC" customModule="tiket_com_swift_2" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="TQw-lh-jeR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="I6e-CX-9ZI">
+                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="I6e-CX-9ZI" id="Gdb-SU-fw4">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <animations/>
+                                </tableViewCellContentView>
+                                <animations/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="bfP-F0-AE4" id="w7b-Mt-dCv"/>
+                            <outlet property="delegate" destination="bfP-F0-AE4" id="d7V-3E-Uke"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SH5-sJ-W9w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1707.5" y="1084.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tLh-2A-IMd">
