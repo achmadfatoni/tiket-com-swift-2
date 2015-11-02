@@ -16,6 +16,7 @@ class CartVC: UITableViewController {
     
     let tiketApi = TiketAPI()
     var orders: JSON = []
+    var errorMsg = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,15 +31,21 @@ class CartVC: UITableViewController {
         self.tiketApi.cart { (orders) -> Void in
             
             
-
-            print(orders)
-            self.orders = orders
-            
-            print("---------- My Order ----------")
-            print(self.orders["myorder"]["data"].array!)
-            
-            print("---------- Amount Order ----------")
-            print(self.orders["myorder"]["data"].count)
+            if let errorMsg = orders["diagnostic"]["error_msgs"].string {
+                print("---------- Error msg ----------")
+                self.errorMsg = orders["diagnostic"]["error_msgs"].string!
+                print(self.errorMsg)
+                
+            }else{
+                print(orders)
+                self.orders = orders
+                
+                print("---------- My Order ----------")
+                print(self.orders["myorder"]["data"].array!)
+                
+                print("---------- Amount Order ----------")
+                print(self.orders["myorder"]["data"].count)
+            }
             
             self.tableView.reloadData()
             SwiftSpinner.hide()
@@ -66,8 +73,7 @@ class CartVC: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        
-        if self.orders["myorder"]["data"].count == 0 {
+        if (self.orders["myorder"]["data"].count == 0) || (self.errorMsg != "") {
             return 1
         }else {
             return self.orders["myorder"]["data"].count
@@ -79,7 +85,7 @@ class CartVC: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
         
-        if self.orders["myorder"]["data"].count == 0 {
+        if (self.orders["myorder"]["data"].count == 0) || (self.errorMsg != "") {
             cell.textLabel?.text    = "No Order Found"
         }else{
             var orderArray = self.orders["myorder"]["data"].array!
@@ -102,7 +108,7 @@ class CartVC: UITableViewController {
     */
     
     override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
-        if self.orders["myorder"]["data"].count == 0 {
+        if (self.orders["myorder"]["data"].count == 0) || (self.errorMsg != "") {
             
             return UITableViewCellEditingStyle.None
     
