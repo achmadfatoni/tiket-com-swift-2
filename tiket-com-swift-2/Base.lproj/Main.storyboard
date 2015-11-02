@@ -313,6 +313,9 @@
                             <outlet property="delegate" destination="bfP-F0-AE4" id="d7V-3E-Uke"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="Tcs-Nr-Wbe" kind="show" identifier="goToCartVC" id="xUp-83-c5U"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SH5-sJ-W9w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -365,5 +368,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Xe8-cv-6gX"/>
+        <segue reference="xUp-83-c5U"/>
     </inferredMetricsTieBreakers>
 </document>

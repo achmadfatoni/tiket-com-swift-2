@@ -17,6 +17,7 @@ class PassengerInformationVC: FormViewController {
     var flightId = ""
     var numberOfpassengers = NumberOfPassengers()
     var parentArray = [Int]()
+    var errorMsg = ""
     
     
     override func viewDidLoad() {
@@ -68,12 +69,34 @@ class PassengerInformationVC: FormViewController {
             
             print("---------- Params ----------")
             print(params)
+            
+            
 
             SwiftSpinner.show("Adding order")
             
             self.tiketApi.addOrder(params, completion: { (response) -> Void in
                 SwiftSpinner.hide()
                 print(response)
+                
+                if let errorMsg = response["diagnostic"]["error_msgs"].string {
+                    print("---------- Error msg ----------")
+                    self.errorMsg = errorMsg.stringByReplacingOccurrencesOfString("you are using insecure protocol,", withString: "")
+                    
+                    
+                    print(self.errorMsg)
+                    
+                    let alertController = UIAlertController(title: "Error", message: self.errorMsg, preferredStyle: .Alert)
+                    
+                    let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                    alertController.addAction(defaultAction)
+                    
+                    self.presentViewController(alertController, animated: true, completion: nil)
+                    
+                }else{
+                    
+                    self.performSegueWithIdentifier("goToCartVC", sender: nil)
+                }
+                
             })
 
 
