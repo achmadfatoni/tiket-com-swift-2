@@ -10,6 +10,8 @@
 		9827A21E9D1AC7251882ED06 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD79D9EBEAAF80BB65FA4976 /* Pods.framework */; };
 		FF1FA3B01BE357B500F4A078 /* FlightsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1FA3AF1BE357B500F4A078 /* FlightsVC.swift */; };
 		FF1FA3B31BE35EC000F4A078 /* FlightCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1FA3B21BE35EC000F4A078 /* FlightCell.swift */; };
+		FF314A701BE6E2FF00B26955 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF314A6F1BE6E2FF00B26955 /* SWRevealViewController.m */; };
+		FF314A721BE6E34500B26955 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF314A711BE6E34500B26955 /* MenuVC.swift */; };
 		FF851A8E1BD15A10007ED3F6 /* SearchFlightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF851A8D1BD15A10007ED3F6 /* SearchFlightViewController.swift */; };
 		FF994F6F1BE4FD2E004E3873 /* PassengerInformationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF994F6E1BE4FD2E004E3873 /* PassengerInformationVC.swift */; };
 		FF994F721BE505C4004E3873 /* NumberOfPassengers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF994F711BE505C4004E3873 /* NumberOfPassengers.swift */; };
@@ -46,6 +48,10 @@
 		D0C3739B29A28B87D2944B83 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		FF1FA3AF1BE357B500F4A078 /* FlightsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlightsVC.swift; sourceTree = "<group>"; };
 		FF1FA3B21BE35EC000F4A078 /* FlightCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlightCell.swift; sourceTree = "<group>"; };
+		FF314A6D1BE6E2FE00B26955 /* tiket-com-swift-2-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "tiket-com-swift-2-Bridging-Header.h"; sourceTree = "<group>"; };
+		FF314A6E1BE6E2FF00B26955 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		FF314A6F1BE6E2FF00B26955 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		FF314A711BE6E34500B26955 /* MenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		FF851A8D1BD15A10007ED3F6 /* SearchFlightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFlightViewController.swift; sourceTree = "<group>"; };
 		FF994F6E1BE4FD2E004E3873 /* PassengerInformationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassengerInformationVC.swift; sourceTree = "<group>"; };
 		FF994F711BE505C4004E3873 /* NumberOfPassengers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberOfPassengers.swift; sourceTree = "<group>"; };
@@ -116,12 +122,23 @@
 			name = ViewCell;
 			sourceTree = "<group>";
 		};
+		FF314A6C1BE6E2E400B26955 /* SWFReavealViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FF314A6E1BE6E2FF00B26955 /* SWRevealViewController.h */,
+				FF314A6F1BE6E2FF00B26955 /* SWRevealViewController.m */,
+				FF314A6D1BE6E2FE00B26955 /* tiket-com-swift-2-Bridging-Header.h */,
+			);
+			name = SWFReavealViewController;
+			sourceTree = "<group>";
+		};
 		FF851A8C1BD159BA007ED3F6 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				FF851A8D1BD15A10007ED3F6 /* SearchFlightViewController.swift */,
 				FF1FA3AF1BE357B500F4A078 /* FlightsVC.swift */,
 				FF994F6E1BE4FD2E004E3873 /* PassengerInformationVC.swift */,
+				FF314A711BE6E34500B26955 /* MenuVC.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -160,6 +177,7 @@
 		FFC4E26D1BB6FC55001A6F42 /* tiket-com-swift-2 */ = {
 			isa = PBXGroup;
 			children = (
+				FF314A6C1BE6E2E400B26955 /* SWFReavealViewController */,
 				FF994F701BE504E6004E3873 /* TiketCom */,
 				FF1FA3B11BE35E8900F4A078 /* ViewCell */,
 				FF851A8C1BD159BA007ED3F6 /* ViewController */,
@@ -256,6 +274,7 @@
 		FFC4E2631BB6FC55001A6F42 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Achmad Fatoni";
 				TargetAttributes = {
@@ -378,9 +397,11 @@
 				FFC4E2A01BB6FE4D001A6F42 /* TiketAPI.swift in Sources */,
 				FFC4E2711BB6FC55001A6F42 /* ViewController.swift in Sources */,
 				FF994F721BE505C4004E3873 /* NumberOfPassengers.swift in Sources */,
+				FF314A701BE6E2FF00B26955 /* SWRevealViewController.m in Sources */,
 				FF994F6F1BE4FD2E004E3873 /* PassengerInformationVC.swift in Sources */,
 				FFC4E26F1BB6FC55001A6F42 /* AppDelegate.swift in Sources */,
 				FF1FA3B01BE357B500F4A078 /* FlightsVC.swift in Sources */,
+				FF314A721BE6E34500B26955 /* MenuVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,6 +542,7 @@
 			baseConfigurationReference = 54B803030BE3F33C8D96032B /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "tiket-com-swift-2/Info.plist";
@@ -528,6 +550,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.achmadfatoni.tiket-com-swift-2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "tiket-com-swift-2/tiket-com-swift-2-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -536,6 +560,7 @@
 			baseConfigurationReference = D0C3739B29A28B87D2944B83 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "tiket-com-swift-2/Info.plist";
@@ -543,6 +568,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.achmadfatoni.tiket-com-swift-2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "tiket-com-swift-2/tiket-com-swift-2-Bridging-Header.h";
 			};
 			name = Release;
 		};

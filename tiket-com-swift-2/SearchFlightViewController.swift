@@ -13,6 +13,8 @@ import SwiftSpinner
 
 class SearchFlightViewController: FormViewController {
     
+    @IBOutlet weak var menuButton: UIBarButtonItem!
+    
     let tiketApi = TiketAPI()
     
     var airportDictionary   = [String:String]()
@@ -30,6 +32,15 @@ class SearchFlightViewController: FormViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        if self.revealViewController() != nil {
+            menuButton.target = self.revealViewController()
+            menuButton.action = "revealToggle:"
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
+        
+        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .Plain, target: self, action: "submit:")
         
         SwiftSpinner.show("Loading...")
