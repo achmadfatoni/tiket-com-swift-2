@@ -12,6 +12,7 @@
 		FF1FA3B31BE35EC000F4A078 /* FlightCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1FA3B21BE35EC000F4A078 /* FlightCell.swift */; };
 		FF314A701BE6E2FF00B26955 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF314A6F1BE6E2FF00B26955 /* SWRevealViewController.m */; };
 		FF314A721BE6E34500B26955 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF314A711BE6E34500B26955 /* MenuVC.swift */; };
+		FF314A741BE718C900B26955 /* CartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF314A731BE718C900B26955 /* CartVC.swift */; };
 		FF851A8E1BD15A10007ED3F6 /* SearchFlightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF851A8D1BD15A10007ED3F6 /* SearchFlightViewController.swift */; };
 		FF994F6F1BE4FD2E004E3873 /* PassengerInformationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF994F6E1BE4FD2E004E3873 /* PassengerInformationVC.swift */; };
 		FF994F721BE505C4004E3873 /* NumberOfPassengers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF994F711BE505C4004E3873 /* NumberOfPassengers.swift */; };
@@ -52,6 +53,7 @@
 		FF314A6E1BE6E2FF00B26955 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		FF314A6F1BE6E2FF00B26955 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		FF314A711BE6E34500B26955 /* MenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
+		FF314A731BE718C900B26955 /* CartVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartVC.swift; sourceTree = "<group>"; };
 		FF851A8D1BD15A10007ED3F6 /* SearchFlightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFlightViewController.swift; sourceTree = "<group>"; };
 		FF994F6E1BE4FD2E004E3873 /* PassengerInformationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassengerInformationVC.swift; sourceTree = "<group>"; };
 		FF994F711BE505C4004E3873 /* NumberOfPassengers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberOfPassengers.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				FF1FA3AF1BE357B500F4A078 /* FlightsVC.swift */,
 				FF994F6E1BE4FD2E004E3873 /* PassengerInformationVC.swift */,
 				FF314A711BE6E34500B26955 /* MenuVC.swift */,
+				FF314A731BE718C900B26955 /* CartVC.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -393,6 +396,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF851A8E1BD15A10007ED3F6 /* SearchFlightViewController.swift in Sources */,
+				FF314A741BE718C900B26955 /* CartVC.swift in Sources */,
 				FF1FA3B31BE35EC000F4A078 /* FlightCell.swift in Sources */,
 				FFC4E2A01BB6FE4D001A6F42 /* TiketAPI.swift in Sources */,
 				FFC4E2711BB6FC55001A6F42 /* ViewController.swift in Sources */,
