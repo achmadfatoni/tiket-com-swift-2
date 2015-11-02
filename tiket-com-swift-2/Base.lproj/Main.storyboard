@@ -126,7 +126,7 @@
             </objects>
             <point key="canvasLocation" x="405.5" y="-178.5"/>
         </scene>
-        <!--Title-->
+        <!--Cart-->
         <scene sceneID="dXX-Um-tWt">
             <objects>
                 <tableViewController id="LoV-X1-idG" customClass="CartVC" customModule="tiket_com_swift_2" customModuleProvider="target" sceneMemberID="viewController">
@@ -136,12 +136,22 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="PMT-dB-Sbg">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="zJz-pb-SfA" style="IBUITableViewCellStyleDefault" id="PMT-dB-Sbg">
                                 <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PMT-dB-Sbg" id="gcg-Zb-bk7">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zJz-pb-SfA">
+                                            <rect key="frame" x="15" y="0.0" width="345" height="43"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                     <animations/>
                                 </tableViewCellContentView>
                                 <animations/>
@@ -152,7 +162,7 @@
                             <outlet property="delegate" destination="LoV-X1-idG" id="V9x-Qp-N0L"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Title" id="k9o-nq-Nbs">
+                    <navigationItem key="navigationItem" title="Cart" id="k9o-nq-Nbs">
                         <barButtonItem key="leftBarButtonItem" image="menu" id="IQT-f0-lWq"/>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>

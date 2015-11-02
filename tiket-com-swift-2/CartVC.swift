@@ -15,6 +15,7 @@ class CartVC: UITableViewController {
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
     let tiketApi = TiketAPI()
+    var orders: JSON = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +28,19 @@ class CartVC: UITableViewController {
         
         SwiftSpinner.show("Loading")
         self.tiketApi.cart { (orders) -> Void in
-            print(orders)
             
+            
+
+            print(orders)
+            self.orders = orders
+            
+            print("---------- My Order ----------")
+            print(self.orders["myorder"]["data"].array!)
+            
+            print("---------- Amount Order ----------")
+            print(self.orders["myorder"]["data"].count)
+            
+            self.tableView.reloadData()
             SwiftSpinner.hide()
         }
         
@@ -49,23 +61,27 @@ class CartVC: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return self.orders["myorder"]["data"].count
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
 
-        // Configure the cell...
+        var orderArray = self.orders["myorder"]["data"].array!
+
+        let indexPath           =  orderArray[indexPath.row]
+        cell.textLabel?.text    = indexPath["order_name_detail"].string!
+//        cell.textLabel?.text        = "123"
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
