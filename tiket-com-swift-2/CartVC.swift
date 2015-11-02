@@ -77,7 +77,6 @@ class CartVC: UITableViewController {
 
         let indexPath           =  orderArray[indexPath.row]
         cell.textLabel?.text    = indexPath["order_name_detail"].string!
-//        cell.textLabel?.text        = "123"
 
         return cell
     }
@@ -91,17 +90,46 @@ class CartVC: UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+            
+            var orderArray = self.orders["myorder"]["data"].array!
+            
+            let data          =  orderArray[indexPath.row]
+            
+            SwiftSpinner.show("Delete Order")
+            self.tiketApi.deleteOrder(data["order_detail_id"].string!, completion: { (response) -> Void in
+                print(response)
+                
+                self.tiketApi.cart { (orders) -> Void in
+                    
+                    
+                    
+                    print(orders)
+                    self.orders = orders
+                    
+                    print("---------- My Order ----------")
+                    print(self.orders["myorder"]["data"].array!)
+                    
+                    print("---------- Amount Order ----------")
+                    print(self.orders["myorder"]["data"].count)
+                    
+                    self.tableView.reloadData()
+                    SwiftSpinner.hide()
+                }
+                
+                SwiftSpinner.hide()
+            })
+            
+//            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        }
+        
+        
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.
