@@ -100,10 +100,21 @@ class CartVC: UITableViewController {
         return true
     }
     */
+    
+    override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        if self.orders["myorder"]["data"].count == 0 {
+            
+            return UITableViewCellEditingStyle.None
+    
+        }
+        
+        return UITableViewCellEditingStyle.Delete;
+    }
 
     
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
         if editingStyle == .Delete {
             // Delete the row from the data source
             
