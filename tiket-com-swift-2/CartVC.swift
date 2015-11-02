@@ -66,17 +66,28 @@ class CartVC: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return self.orders["myorder"]["data"].count
+        
+        if self.orders["myorder"]["data"].count == 0 {
+            return 1
+        }else {
+            return self.orders["myorder"]["data"].count
+        }
+        
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
-
-        var orderArray = self.orders["myorder"]["data"].array!
-
-        let indexPath           =  orderArray[indexPath.row]
-        cell.textLabel?.text    = indexPath["order_name_detail"].string!
+        
+        if self.orders["myorder"]["data"].count == 0 {
+            cell.textLabel?.text    = "No Order Found"
+        }else{
+            var orderArray = self.orders["myorder"]["data"].array!
+            
+            let indexPath           =  orderArray[indexPath.row]
+            cell.textLabel?.text    = indexPath["order_name_detail"].string!
+        }
+       
 
         return cell
     }
@@ -123,8 +134,6 @@ class CartVC: UITableViewController {
                 
                 SwiftSpinner.hide()
             })
-            
-//            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
         
         
