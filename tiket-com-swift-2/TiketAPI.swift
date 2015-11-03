@@ -41,10 +41,13 @@ class TiketAPI {
                 if token == nil {
                     print("---------- REQUEST ----------")
                     print(request)
+                    print("---------- END REQUEST ----------\n")
                     print("\n")
                     
                     print("---------- RESPONSE ----------")
                     print(response)
+                    print("---------- END RESPONSE ----------")
+
                     print("\n")
                     
                     print("---------- RESULT ----------")
@@ -83,7 +86,6 @@ class TiketAPI {
     
     
     func getAirport(token: String, completion: (airports: [JSON]) -> Void){
-        print("token inside getAirport function \(token)")
         
         let urlgetAirports  = self.tiketComURL + "flight_api/all_airport"
 
@@ -96,15 +98,18 @@ class TiketAPI {
             .responseJSON { (request, response, result) in
                 print("---------- REQUEST ----------")
                 print(request)
+                print("---------- END REQUEST ----------\n")
                 print("\n")
                 
                 print("---------- RESPONSE ----------")
                 print(response)
+                print("---------- END RESPONSE ----------\n")
                 print("\n")
                 
                 print("---------- RESULT ----------")
                 print(result)
                 debugPrint(result)
+                print("---------- END RESULT ----------\n")
                 print("\n")
                 
                 guard let value = result.value else {
@@ -117,11 +122,9 @@ class TiketAPI {
                     return
                 }
                 
-                print("---------- AIRPORT ----------")
+                //"---------- AIRPORT ----------"
                 let json = JSON(value)
                 let airports = json["all_airport"]["airport"].array!
-                print(airports)
-
                 
                 completion(airports: airports)
         }
@@ -141,15 +144,19 @@ class TiketAPI {
             .responseJSON { (request, response, result) in
                 print("---------- REQUEST ----------")
                 print(request)
+                
+                print("---------- END REQUEST ----------\n")
                 print("\n")
                 
                 print("---------- RESPONSE ----------")
                 print(response)
+                print("---------- END RESPONSE ----------\n")
                 print("\n")
                 
                 print("---------- RESULT ----------")
                 print(result)
                 debugPrint(result)
+                print("---------- END RESULT ----------\n")
                 print("\n")
                 
                 guard let value = result.value else {
@@ -162,13 +169,58 @@ class TiketAPI {
                     return
                 }
                 
-                print("---------- Flight ----------")
                 let json = JSON(value)
                 
                 completion(flights: json)
         }
         
         
+    }
+    
+    func flightData(flightId: String, completion: (flightData: JSON) -> Void){
+    
+        var urlFlightData = self.tiketComURL + "flight_api/get_flight_data"
+        
+        var params = [
+            "flight_id" : flightId,
+            "token"     : self.token as! AnyObject,
+            "output"    : self.output
+        ]
+        
+        Alamofire.request(.GET, urlFlightData, parameters : params)
+            .responseJSON { (request, response, result) in
+                print("---------- REQUEST ----------")
+                print(request)
+                print("---------- END REQUEST ----------\n")
+                print("\n")
+                
+                print("---------- RESPONSE ----------")
+                print(response)
+                print("---------- END RESPONSE ----------\n")
+                print("\n")
+                
+                print("---------- RESULT ----------")
+                print(result)
+                debugPrint(result)
+                print("---------- END RESULT ----------\n")
+                print("\n")
+                
+                guard let value = result.value else {
+                    print("Error: did not receive data")
+                    return
+                }
+                guard result.error == nil else {
+                    print("error calling GET on /posts/1")
+                    print(result.error)
+                    return
+                }
+                
+                
+                let json = JSON(value)
+                
+                completion(flightData: json)
+        }
+
     }
     
     func addOrder(var params: [String:AnyObject], completion: (response: JSON) -> Void){
@@ -184,15 +236,18 @@ class TiketAPI {
             .responseJSON { (request, response, result) in
                 print("---------- REQUEST ----------")
                 print(request)
+                print("---------- END REQUEST ----------\n")
                 print("\n")
                 
                 print("---------- RESPONSE ----------")
                 print(response)
+                print("---------- END RESPONSE ----------\n")
                 print("\n")
                 
                 print("---------- RESULT ----------")
                 print(result)
                 debugPrint(result)
+                print("---------- END RESULT ----------\n")
                 print("\n")
                 
                 guard let value = result.value else {
@@ -205,7 +260,6 @@ class TiketAPI {
                     return
                 }
                 
-                print("---------- Response ----------")
                 let json = JSON(value)
 
                 completion(response: json)
@@ -226,15 +280,18 @@ class TiketAPI {
             .responseJSON { (request, response, result) in
                 print("---------- REQUEST ----------")
                 print(request)
+                print("---------- END REQUEST ----------\n")
                 print("\n")
                 
                 print("---------- RESPONSE ----------")
                 print(response)
+                print("---------- END RESPONSE ----------\n")
                 print("\n")
                 
                 print("---------- RESULT ----------")
                 print(result)
                 debugPrint(result)
+                print("---------- END RESULT ----------\n")
                 print("\n")
                 
                 guard let value = result.value else {
@@ -247,7 +304,6 @@ class TiketAPI {
                     return
                 }
                 
-                print("---------- Response ----------")
                 let json = JSON(value)
                 
                 completion(orders: json)
@@ -271,15 +327,18 @@ class TiketAPI {
             .responseJSON { (request, response, result) in
                 print("---------- REQUEST ----------")
                 print(request)
+                print("---------- END REQUEST ----------\n")
                 print("\n")
                 
                 print("---------- RESPONSE ----------")
                 print(response)
+                print("---------- END RESPONSE ----------\n")
                 print("\n")
                 
                 print("---------- RESULT ----------")
                 print(result)
                 debugPrint(result)
+                print("---------- END RESULT ----------\n")
                 print("\n")
                 
                 guard let value = result.value else {
@@ -292,12 +351,55 @@ class TiketAPI {
                     return
                 }
                 
-                print("---------- Response ----------")
                 let json = JSON(value)
                 
                 completion(response: json)
         }
         
         
+    }
+
+    func listCountry(completion : (countries : JSON) -> Void){
+
+        let listCountryUrl = self.tiketComURL + "general_api/listCountry"
+
+        let params = [
+                "token"     : self.token as! AnyObject,
+                "output"    : self.output
+        ]
+
+        Alamofire.request(.GET, listCountryUrl, parameters: params)
+        .responseJSON { (request, response, result) in
+            print("---------- REQUEST ----------")
+            print(request)
+            print("---------- END REQUEST ----------\n")
+            print("\n")
+
+            print("---------- RESPONSE ----------")
+            print(response)
+            print("---------- END RESPONSE ----------\n")
+            print("\n")
+
+            print("---------- RESULT ----------")
+            print(result)
+            debugPrint(result)
+            print("---------- END RESULT ----------\n")
+            print("\n")
+
+            guard let value = result.value else {
+                print("Error: did not receive data")
+                return
+            }
+            guard result.error == nil else {
+                print("error calling GET on /posts/1")
+                print(result.error)
+                return
+            }
+
+            let json = JSON(value)
+
+            completion(countries: json)
+        }
+
     }
 }

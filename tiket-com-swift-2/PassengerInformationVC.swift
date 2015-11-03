@@ -9,14 +9,24 @@
 import UIKit
 import SwiftForms
 import SwiftSpinner
+import SwiftyJSON
 
 class PassengerInformationVC: FormViewController {
 
     let tiketApi = TiketAPI()
+    
+    var countries = Countries()
+    
     let defaults = NSUserDefaults.standardUserDefaults()
+    
     var flightId = ""
+    
+    var flightData:JSON = []
+    
     var numberOfpassengers = NumberOfPassengers()
+    
     var parentArray = [Int]()
+    
     var errorMsg = ""
     
     
@@ -30,8 +40,12 @@ class PassengerInformationVC: FormViewController {
             parentArray.append(i)
         }
         
+        print("------ Flight Data ------")
+        print(self.flightData)
+        print("------ END Flight Data ------")
         
-        self.loadForm()
+        
+        self.loadFormContent()
         
         print(flightId)
         print(numberOfpassengers.adult)
@@ -112,6 +126,17 @@ class PassengerInformationVC: FormViewController {
     }
     
     private func loadForm(){
+        let form = FormDescriptor()
+        
+        form.title  = "Informasi Penumpang"
+        
+        self.form = form
+
+    }
+    
+    
+    private func loadFormContent(){
+        
         
         let form = FormDescriptor()
         
@@ -193,6 +218,93 @@ class PassengerInformationVC: FormViewController {
             row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = ["textField.textAlignment" : NSTextAlignment.Right.rawValue]
 
             section.addRow(row)
+            
+            
+            //bithdate
+            if let birthdate = self.flightData["required"]["birthdatea\(i)"].dictionary{
+                row = FormRowDescriptor(tag: "birthdatea\(i)", rowType: .Date, title: "Birthdate")
+                section.addRow(row)
+            }
+            
+            //passport no
+            if let passportNo = self.flightData["required"]["passportnoa\(i)"].dictionary {
+                row = FormRowDescriptor(tag: "passportnoa\(i))", rowType: .Text, title: "Passport No")
+                row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = ["textField.textAlignment" : NSTextAlignment.Right.rawValue]
+            
+                section.addRow(row)
+                
+            }
+            
+            //passport expired date
+            if let passportExpired = self.flightData["required"]["passportExpiryDatea\(i)"].dictionary {
+                row = FormRowDescriptor(tag: "passportExpiryDatea\(i))", rowType: .Date, title: "Passport Expired")
+                row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = ["textField.textAlignment" : NSTextAlignment.Right.rawValue]
+                
+                section.addRow(row)
+                
+            }
+            
+            //passportissueddatea
+            if let passportissueddatea = self.flightData["required"]["passportissueddatea\(i)"].dictionary {
+                row = FormRowDescriptor(tag: "passportissueddatea\(i))", rowType: .Date, title: "Passport Issued")
+                row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = ["textField.textAlignment" : NSTextAlignment.Right.rawValue]
+                
+                section.addRow(row)
+                
+            }
+            
+            //passportissuinga1
+            if let passportNationality = self.flightData["required"]["passportissuinga\(i)"].dictionary {
+                
+                //adult title
+                row = FormRowDescriptor(tag: "passportissuinga\(i)", rowType: .Picker, title: "Passport Issued Country")
+                row.configuration[FormRowDescriptor.Configuration.Options] = self.countries.countryIdArray
+                row.configuration[FormRowDescriptor.Configuration.AllowsMultipleSelection] = false
+                row.configuration[FormRowDescriptor.Configuration.TitleFormatterClosure] = { value in
+                    return self.countries.countryNameArray[value as! String]
+                    } as TitleFormatterClosure
+                
+                section.addRow(row)
+            }
+
+            
+            //passport nationality
+            if let passportNationality = self.flightData["required"]["passportnationalitya\(i)"].dictionary {
+
+                //adult title
+                row = FormRowDescriptor(tag: "passportnationalitya\(i)", rowType: .Picker, title: "Passport Nationality")
+                row.configuration[FormRowDescriptor.Configuration.Options] = self.countries.countryIdArray
+                row.configuration[FormRowDescriptor.Configuration.AllowsMultipleSelection] = false
+                row.configuration[FormRowDescriptor.Configuration.TitleFormatterClosure] = { value in
+                    return self.countries.countryNameArray[value as! String]
+                    } as TitleFormatterClosure
+                
+                section.addRow(row)
+            }
+            
+            //dcheckinbaggagea
+            if let dcheckinbaggagea = self.flightData["required"]["dcheckinbaggagea1\(i)"].dictionary {
+                
+                var idArray = [String]()
+                var nameDict = [String:String]()
+                
+                for id in dcheckinbaggagea["resource"]!.array! {
+                    idArray.append(id["id"].string!)
+                    nameDict[id["id"].string!] = id["name"].string!
+                }
+                
+                
+                //adult title
+                row = FormRowDescriptor(tag: "dcheckinbaggagea11\(i)", rowType: .Picker, title: "Departure Baggage")
+                row.configuration[FormRowDescriptor.Configuration.Options] = idArray
+                row.configuration[FormRowDescriptor.Configuration.AllowsMultipleSelection] = false
+                row.configuration[FormRowDescriptor.Configuration.TitleFormatterClosure] = { value in
+                    return nameDict[value as! String]
+                    } as TitleFormatterClosure
+                
+                section.addRow(row)
+            }
+
 
             form.sections.append(section);
         }

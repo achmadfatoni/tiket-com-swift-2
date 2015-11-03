@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9796C32D370C055B36667143 /* Countries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9796CF868B47061730B697B1 /* Countries.swift */; };
 		9827A21E9D1AC7251882ED06 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD79D9EBEAAF80BB65FA4976 /* Pods.framework */; };
 		FF1FA3B01BE357B500F4A078 /* FlightsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1FA3AF1BE357B500F4A078 /* FlightsVC.swift */; };
 		FF1FA3B31BE35EC000F4A078 /* FlightCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1FA3B21BE35EC000F4A078 /* FlightCell.swift */; };
@@ -45,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		54B803030BE3F33C8D96032B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		9796CF868B47061730B697B1 /* Countries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Countries.swift; sourceTree = "<group>"; };
 		BD79D9EBEAAF80BB65FA4976 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0C3739B29A28B87D2944B83 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		FF1FA3AF1BE357B500F4A078 /* FlightsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlightsVC.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 			children = (
 				FFC4E29F1BB6FE4D001A6F42 /* TiketAPI.swift */,
 				FF994F711BE505C4004E3873 /* NumberOfPassengers.swift */,
+				9796CF868B47061730B697B1 /* Countries.swift */,
 			);
 			name = TiketCom;
 			sourceTree = "<group>";
@@ -406,6 +409,7 @@
 				FFC4E26F1BB6FC55001A6F42 /* AppDelegate.swift in Sources */,
 				FF1FA3B01BE357B500F4A078 /* FlightsVC.swift in Sources */,
 				FF314A721BE6E34500B26955 /* MenuVC.swift in Sources */,
+				9796C32D370C055B36667143 /* Countries.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

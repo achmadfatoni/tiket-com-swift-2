@@ -42,18 +42,16 @@ class SearchFlightViewController: FormViewController {
         
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .Plain, target: self, action: "submit:")
-        
+
         SwiftSpinner.show("Loading...")
         self.tiketApi.getTiketToken({(token) in
-            print("token : " + token)
             
             self.tiketApi.getAirport(token, completion: { (airports) -> Void in
-                print("---------- Airport ----------")
-                //print(airports)
+
                 for airport in airports {
-                    //print("---------- Airport Code ----------")
+                    //airport code
                     let airportCode = airport["airport_code"].string!
-                    
+                    //add airport code to dict
                     self.airportDictionary[airportCode] = airport["location_name"].string!
                 }
                 
@@ -93,7 +91,6 @@ class SearchFlightViewController: FormViewController {
             let date = NSDateFormatter()
             date.dateFormat = "yyyy-MM-dd"
             let departureDate = date.stringFromDate(self.valueForTag("departDate") as! NSDate)
-            
             //date format
             //YYYY-MM-DD
             

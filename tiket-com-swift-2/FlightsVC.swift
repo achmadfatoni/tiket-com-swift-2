@@ -12,7 +12,9 @@ import SwiftForms
 
 class FlightsVC: UITableViewController {
 
+    let api = TiketAPI()
     var flights: JSON = []
+    var flightData: JSON = []
     var flightId:String = ""
     var numberOfPassengers  = NumberOfPassengers()
     
@@ -25,13 +27,6 @@ class FlightsVC: UITableViewController {
         self.tableView.rowHeight = 80
         self.tableView.reloadData()
 
-        //print(self.flights)
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -73,7 +68,13 @@ class FlightsVC: UITableViewController {
         
         self.flightId = cell.flightId
         
-        performSegueWithIdentifier("goToPassengerInformation", sender: nil)
+        self.api.flightData(self.flightId) { (flightData) -> Void in
+            
+            self.flightData = flightData
+            
+            self.performSegueWithIdentifier("goToPassengerInformation", sender: nil)
+        }
+        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -84,6 +85,7 @@ class FlightsVC: UITableViewController {
             
             passengerInformationVC.numberOfpassengers   = self.numberOfPassengers
             passengerInformationVC.flightId             = self.flightId
+            passengerInformationVC.flightData           = self.flightData
             
         }
     }
