@@ -14,9 +14,12 @@ class CartVC: UITableViewController {
     
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
+    @IBOutlet weak var checkoutButton: UIBarButtonItem!
+    
     let tiketApi = TiketAPI()
     var orders: JSON = []
     var errorMsg = ""
+    var orderId = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +30,7 @@ class CartVC: UITableViewController {
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         
+        
         SwiftSpinner.show("Loading")
         self.tiketApi.cart { (orders) -> Void in
             
@@ -36,29 +40,72 @@ class CartVC: UITableViewController {
                 self.errorMsg = orders["diagnostic"]["error_msgs"].string!
                 print(self.errorMsg)
                 
+                //hide checkout button
+                self.navigationItem.rightBarButtonItem = nil
+                
             }else{
                 print(orders)
                 self.orders = orders
+                
+                //set orderId
+                self.orderId = self.orders["myorder"]["order_id"].string!
                 
                 print("---------- My Order ----------")
                 print(self.orders["myorder"]["data"].array!)
                 
                 print("---------- Amount Order ----------")
                 print(self.orders["myorder"]["data"].count)
+                
+                if self.orders["myorder"]["data"].count == 0 {
+                    //hide checkout button
+                    self.navigationItem.rightBarButtonItem = nil
+                }
             }
             
             self.tableView.reloadData()
             SwiftSpinner.hide()
         }
         
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
+    @IBAction func checkout(sender: AnyObject) {
+        print("Order Id : \(self.orderId)")
+        
+        if self.orders["myorder"]["data"].count == 0 {
+            
+            let alertController = UIAlertController(title: "Error", message: "No order found", preferredStyle: .Alert)
+            
+            let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            alertController.addAction(defaultAction)
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
+        
+        SwiftSpinner.show("Loading...")
+        self.tiketApi.checkoutRequest(self.orderId) { (response) -> Void in
+            if let errorMsg = response["diagnostic"]["error_msgs"].string {
+                print("---------- Error msg ----------")
+                self.errorMsg = errorMsg.stringByReplacingOccurrencesOfString("you are using insecure protocol,", withString: "")
+                
+                
+                print(self.errorMsg)
+                
+                let alertController = UIAlertController(title: "Error", message: self.errorMsg + ", Please delete order that already Expired", preferredStyle: .Alert)
+                
+                let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                alertController.addAction(defaultAction)
+                
+                self.presentViewController(alertController, animated: true, completion: nil)
+                
+            }else{
+                
+                self.performSegueWithIdentifier("goToCheckout", sender: nil)
+            }
+            
+            SwiftSpinner.hide()
+        }
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -87,11 +134,22 @@ class CartVC: UITableViewController {
         
         if (self.orders["myorder"]["data"].count == 0) || (self.errorMsg != "") {
             cell.textLabel?.text    = "No Order Found"
+            cell.detailTextLabel?.text = ""
+            
         }else{
             var orderArray = self.orders["myorder"]["data"].array!
+            var status     = "Expired"
+            
             
             let indexPath           =  orderArray[indexPath.row]
+            
+            if indexPath["order_detail_status"].string! == "active" {
+                status = "Active"
+            }
+            
             cell.textLabel?.text    = indexPath["order_name_detail"].string!
+            
+            cell.detailTextLabel?.text    = status
         }
        
 
@@ -144,6 +202,12 @@ class CartVC: UITableViewController {
                     
                     print("---------- Amount Order ----------")
                     print(self.orders["myorder"]["data"].count)
+                    
+                    
+                    if self.orders["myorder"]["data"].count == 0 {
+                        //hide checkout button
+                        self.navigationItem.rightBarButtonItem = nil
+                    }
                     
                     self.tableView.reloadData()
                     SwiftSpinner.hide()
