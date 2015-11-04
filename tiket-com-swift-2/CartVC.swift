@@ -19,6 +19,7 @@ class CartVC: UITableViewController {
     let tiketApi = TiketAPI()
     var orders: JSON = []
     var errorMsg = ""
+    var errorCheckoutMsg = ""
     var orderId = ""
 
     override func viewDidLoad() {
@@ -71,31 +72,23 @@ class CartVC: UITableViewController {
     @IBAction func checkout(sender: AnyObject) {
         print("Order Id : \(self.orderId)")
         
-        if self.orders["myorder"]["data"].count == 0 {
-            
-            let alertController = UIAlertController(title: "Error", message: "No order found", preferredStyle: .Alert)
-            
-            let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-            alertController.addAction(defaultAction)
-            
-            self.presentViewController(alertController, animated: true, completion: nil)
-        }
         
         SwiftSpinner.show("Loading...")
         self.tiketApi.checkoutRequest(self.orderId) { (response) -> Void in
             if let errorMsg = response["diagnostic"]["error_msgs"].string {
                 print("---------- Error msg ----------")
-                self.errorMsg = errorMsg.stringByReplacingOccurrencesOfString("you are using insecure protocol,", withString: "")
+                self.errorCheckoutMsg = errorMsg.stringByReplacingOccurrencesOfString("you are using insecure protocol,", withString: "")
                 
                 
-                print(self.errorMsg)
+                print(self.errorCheckoutMsg)
                 
-                let alertController = UIAlertController(title: "Error", message: self.errorMsg + ", Please delete order that already Expired", preferredStyle: .Alert)
+                let alertController = UIAlertController(title: "Error", message: self.errorCheckoutMsg + ", Please delete order that already Expired", preferredStyle: .Alert)
                 
                 let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
                 alertController.addAction(defaultAction)
                 
                 self.presentViewController(alertController, animated: true, completion: nil)
+                
                 
             }else{
                 
@@ -220,30 +213,5 @@ class CartVC: UITableViewController {
         
     }
     
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

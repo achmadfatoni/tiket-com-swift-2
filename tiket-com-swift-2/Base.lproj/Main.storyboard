@@ -182,7 +182,7 @@
                     <connections>
                         <outlet property="checkoutButton" destination="F7v-YS-zxa" id="GPT-Oc-rYW"/>
                         <outlet property="menuButton" destination="IQT-f0-lWq" id="mEE-XJ-CCk"/>
-                        <segue destination="MGA-UW-LSM" kind="show" identifier="goToCheckout" id="vU5-fH-1XK"/>
+                        <segue destination="qUR-rE-n9R" kind="show" identifier="goToCheckout" id="3WU-RJ-ZZt"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="09E-Eg-q5v" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -190,37 +190,37 @@
             <point key="canvasLocation" x="960.5" y="1422.5"/>
         </scene>
         <!--CheckoutVC-->
-        <scene sceneID="odJ-87-Qq8">
+        <scene sceneID="bty-r3-MJb">
             <objects>
-                <viewController id="MGA-UW-LSM" customClass="CheckoutVC" customModule="tiket_com_swift_2" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Y3Y-Rd-B2L"/>
-                        <viewControllerLayoutGuide type="bottom" id="j1R-ez-evJ"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="DCr-vG-Nc2">
+                <tableViewController id="qUR-rE-n9R" customClass="CheckoutVC" customModule="tiket_com_swift_2" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="z0o-zj-2k6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="qUR-rE-n9R" id="w2O-A6-NjN"/>
+                            <outlet property="delegate" destination="qUR-rE-n9R" id="Koq-rC-LtX"/>
+                        </connections>
+                    </tableView>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rGn-Jf-Qah" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DLr-xu-n9h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1418.5" y="1422.5"/>
+            <point key="canvasLocation" x="1472.5" y="1422.5"/>
         </scene>
         <!--Title-->
         <scene sceneID="f9D-fF-17Q">
             <objects>
                 <tableViewController id="yYW-q9-Sct" customClass="SearchFlightViewController" customModule="tiket_com_swift_2" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="lrg-Af-Uj7">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="lrg-Af-Uj7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="n1A-BX-bo7">
-                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="114" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="n1A-BX-bo7" id="LcK-2P-HAX">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -326,14 +326,14 @@
         <scene sceneID="3du-me-qVc">
             <objects>
                 <tableViewController id="bfP-F0-AE4" customClass="PassengerInformationVC" customModule="tiket_com_swift_2" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="TQw-lh-jeR">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="TQw-lh-jeR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="I6e-CX-9ZI">
-                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="114" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="I6e-CX-9ZI" id="Gdb-SU-fw4">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
