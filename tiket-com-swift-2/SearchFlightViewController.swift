@@ -68,6 +68,8 @@ class SearchFlightViewController: FormViewController {
     
     func submit(_: UIBarButtonItem!) {
         
+        self.view.endEditing(true)
+        
         let validateForm        = self.form.validateForm()
         
         if validateForm == nil {
