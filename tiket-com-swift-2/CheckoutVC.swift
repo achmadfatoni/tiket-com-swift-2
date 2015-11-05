@@ -75,7 +75,7 @@ class CheckoutVC: FormViewController {
         row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = ["textField.textAlignment" : NSTextAlignment.Right.rawValue]
         
         section.addRow(row)
-        row = FormRowDescriptor(tag: "register", rowType: .Button, title: "Register")
+        row = FormRowDescriptor(tag: "register", rowType: .Button, title: "Checkout")
         row.configuration[FormRowDescriptor.Configuration.DidSelectClosure] = {
             
             if self.valueForTag("salutation") == nil {
@@ -137,7 +137,7 @@ class CheckoutVC: FormViewController {
         //usersname
         row = FormRowDescriptor(tag: "or", rowType: .Button, title: "OR")
         OR.addRow(row)
-        form.sections.append(OR)
+        //form.sections.append(OR)
         
         
         //----- LOGIN
@@ -193,7 +193,7 @@ class CheckoutVC: FormViewController {
         
         section1.addRow(row)
         
-        form.sections.append(section1)
+        //form.sections.append(section1)
 
         
         self.form = form

@@ -8,10 +8,15 @@
 
 import UIKit
 
-class PaymentVC: UIViewController {
+class PaymentVC: UITableViewController {
 
+    var tiketApi = TiketAPI()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tiketApi.payment { (response) -> Void in
+            print(response)
+        }
 
         // Do any additional setup after loading the view.
     }

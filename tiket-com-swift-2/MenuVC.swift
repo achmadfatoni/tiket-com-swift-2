@@ -26,20 +26,19 @@ class MenuVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if self.tiketApi.isLogin() {
             //row 2
             self.login.hidden = true
             //row 3
             self.register.hidden = true
             //row 4
             self.forgetPassword.hidden = true
-        }else{
+        
             
             self.myOrder.hidden = true
             self.myProfile.hidden = true
             self.changePassword.hidden = true
             self.logout.hidden = true
-        }
+        
         
     }
 

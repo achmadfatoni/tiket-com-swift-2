@@ -34,7 +34,7 @@ class TiketAPI {
             .responseJSON { (request, response, result) in
                 
                 //remove existing token
-                self.defaults.removeObjectForKey("token")
+                //self.defaults.removeObjectForKey("token")
                 
                 
                 var token = self.defaults.objectForKey("token") as? String
@@ -489,5 +489,44 @@ class TiketAPI {
                 
                 completion(response: json)
         }
+    }
+    
+    func payment(completion : (response: JSON)-> Void){
+    
+        let paymentUrl = self.tiketComURL + "checkout/checkout_payment/37?token=" + self.token! + "&currency=IDR&btn_booking=1&output=json"        
+        
+        Alamofire.request(.GET, paymentUrl)
+            .responseJSON { (request, response, result) in
+                print("---------- REQUEST ----------")
+                print(request)
+                print("---------- END REQUEST ----------\n")
+                print("\n")
+                
+                print("---------- RESPONSE ----------")
+                print(response)
+                print("---------- END RESPONSE ----------\n")
+                print("\n")
+                
+                print("---------- RESULT ----------")
+                print(result)
+                debugPrint(result)
+                print("---------- END RESULT ----------\n")
+                print("\n")
+                
+                guard let value = result.value else {
+                    print("Error: did not receive data")
+                    return
+                }
+                guard result.error == nil else {
+                    print("error calling GET on /posts/1")
+                    print(result.error)
+                    return
+                }
+                
+                let json = JSON(value)
+                
+                completion(response: json)
+        }
+
     }
 }
