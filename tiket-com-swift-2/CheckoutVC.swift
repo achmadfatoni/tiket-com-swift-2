@@ -8,9 +8,13 @@
 
 import UIKit
 import SwiftForms
+import SwiftSpinner
 
 
 class CheckoutVC: FormViewController {
+    
+    let tikeApi = TiketAPI()
+    var errorCheckoutMsg = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,7 +116,7 @@ class CheckoutVC: FormViewController {
             } else {
                 var params = [
                     "salutation"    : self.valueForTag("salutation") as! String,
-                    "fisrtName"     : self.valueForTag("firstName") as! String,
+                    "firstName"     : self.valueForTag("firstName") as! String,
                     "lastName"      : self.valueForTag("lastName") as! String,
                     "phone"         : self.valueForTag("phone") as! String,
                     "emailAddress"  : self.valueForTag("emailAddress") as! String
@@ -198,6 +202,36 @@ class CheckoutVC: FormViewController {
     
     private func register(params: [String: String]){
         print(params)
+        
+        SwiftSpinner.show("Loading")
+        self.tikeApi.checkout(params) { (response) -> Void in
+            
+            print(response)
+            
+            SwiftSpinner.hide()
+            
+            if let errorMsg = response["diagnostic"]["error_msgs"].string {
+                print("---------- Error msg ----------")
+                self.errorCheckoutMsg = errorMsg.stringByReplacingOccurrencesOfString("you are using insecure protocol,", withString: "")
+                
+                
+                print(self.errorCheckoutMsg)
+                
+                let alertController = UIAlertController(title: "Error", message: self.errorCheckoutMsg, preferredStyle: .Alert)
+                
+                let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                alertController.addAction(defaultAction)
+                
+                self.presentViewController(alertController, animated: true, completion: nil)
+                
+                
+            }else{
+                
+                self.performSegueWithIdentifier("goToPayment", sender: nil)
+            }
+        }
+        
+        
     }
     
     private func login(params: [String: String]){

@@ -10,6 +10,7 @@
 		9796C32D370C055B36667143 /* Countries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9796CF868B47061730B697B1 /* Countries.swift */; };
 		9827A21E9D1AC7251882ED06 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD79D9EBEAAF80BB65FA4976 /* Pods.framework */; };
 		FF07A5721BE9FAFE00954FA4 /* CheckoutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF07A5711BE9FAFE00954FA4 /* CheckoutVC.swift */; };
+		FF1520551BEB5076004E55A0 /* PaymentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1520541BEB5076004E55A0 /* PaymentVC.swift */; };
 		FF1FA3B01BE357B500F4A078 /* FlightsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1FA3AF1BE357B500F4A078 /* FlightsVC.swift */; };
 		FF1FA3B31BE35EC000F4A078 /* FlightCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1FA3B21BE35EC000F4A078 /* FlightCell.swift */; };
 		FF314A701BE6E2FF00B26955 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF314A6F1BE6E2FF00B26955 /* SWRevealViewController.m */; };
@@ -51,6 +52,7 @@
 		BD79D9EBEAAF80BB65FA4976 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0C3739B29A28B87D2944B83 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		FF07A5711BE9FAFE00954FA4 /* CheckoutVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckoutVC.swift; sourceTree = "<group>"; };
+		FF1520541BEB5076004E55A0 /* PaymentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentVC.swift; sourceTree = "<group>"; };
 		FF1FA3AF1BE357B500F4A078 /* FlightsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlightsVC.swift; sourceTree = "<group>"; };
 		FF1FA3B21BE35EC000F4A078 /* FlightCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlightCell.swift; sourceTree = "<group>"; };
 		FF314A6D1BE6E2FE00B26955 /* tiket-com-swift-2-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "tiket-com-swift-2-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				FF314A711BE6E34500B26955 /* MenuVC.swift */,
 				FF314A731BE718C900B26955 /* CartVC.swift */,
 				FF07A5711BE9FAFE00954FA4 /* CheckoutVC.swift */,
+				FF1520541BEB5076004E55A0 /* PaymentVC.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -406,6 +409,7 @@
 				FF1FA3B31BE35EC000F4A078 /* FlightCell.swift in Sources */,
 				FFC4E2A01BB6FE4D001A6F42 /* TiketAPI.swift in Sources */,
 				FFC4E2711BB6FC55001A6F42 /* ViewController.swift in Sources */,
+				FF1520551BEB5076004E55A0 /* PaymentVC.swift in Sources */,
 				FF994F721BE505C4004E3873 /* NumberOfPassengers.swift in Sources */,
 				FF314A701BE6E2FF00B26955 /* SWRevealViewController.m in Sources */,
 				FF994F6F1BE4FD2E004E3873 /* PassengerInformationVC.swift in Sources */,

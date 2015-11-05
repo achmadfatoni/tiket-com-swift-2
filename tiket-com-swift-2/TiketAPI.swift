@@ -408,7 +408,7 @@ class TiketAPI {
         
         let params = [
             "token"     : self.token as! AnyObject,
-            "output"    : self.output
+            "output"    : self.output,
         ]
         
         Alamofire.request(.GET, checkoutRequestUlr, parameters: params)
@@ -444,5 +444,47 @@ class TiketAPI {
                 completion(response: json)
         }
 
+    }
+    
+    
+    func checkout(var params: [String:String], completion: (response: JSON) -> Void) {
+        let checkoutUlr = self.tiketComURL + "checkout/checkout_customer"
+        
+        params["token"] = self.token
+        params["output"] = self.output
+        params["saveContinue"] = "2"
+        
+        Alamofire.request(.GET, checkoutUlr, parameters: params)
+            .responseJSON { (request, response, result) in
+                print("---------- REQUEST ----------")
+                print(request)
+                print("---------- END REQUEST ----------\n")
+                print("\n")
+                
+                print("---------- RESPONSE ----------")
+                print(response)
+                print("---------- END RESPONSE ----------\n")
+                print("\n")
+                
+                print("---------- RESULT ----------")
+                print(result)
+                debugPrint(result)
+                print("---------- END RESULT ----------\n")
+                print("\n")
+                
+                guard let value = result.value else {
+                    print("Error: did not receive data")
+                    return
+                }
+                guard result.error == nil else {
+                    print("error calling GET on /posts/1")
+                    print(result.error)
+                    return
+                }
+                
+                let json = JSON(value)
+                
+                completion(response: json)
+        }
     }
 }
