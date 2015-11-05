@@ -18,6 +18,9 @@ class TiketAPI {
     let output      = "json"
     let token       = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
 
+    func isLogin() -> Bool {
+        return false
+    }
     
     func getTiketToken(completion : (token : String) -> Void) {
         let urlString = self.tiketComURL + "apiv1/payexpress"
@@ -31,7 +34,7 @@ class TiketAPI {
             .responseJSON { (request, response, result) in
                 
                 //remove existing token
-                //defaults.removeObjectForKey("token")
+                self.defaults.removeObjectForKey("token")
                 
                 
                 var token = self.defaults.objectForKey("token") as? String
