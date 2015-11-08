@@ -157,7 +157,7 @@ class SearchFlightViewController: FormViewController {
         
         let section1 = FormSectionDescriptor()
         //departure airport
-        var row: FormRowDescriptor! = FormRowDescriptor(tag: "departureAirportCode", rowType: .MultipleSelector, title: "Departure")
+        var row: FormRowDescriptor! = FormRowDescriptor(tag: "departureAirportCode", rowType: .MultipleSelector, title: "Dari")
         row.configuration[FormRowDescriptor.Configuration.Options] = self.airportCodeArray
         row.configuration[FormRowDescriptor.Configuration.AllowsMultipleSelection] = false
         row.configuration[FormRowDescriptor.Configuration.Required] = true
@@ -168,7 +168,7 @@ class SearchFlightViewController: FormViewController {
         section1.addRow(row)
         
         // arrival airport
-        row = FormRowDescriptor(tag: "arrivalAirportCode", rowType: .MultipleSelector, title: "Arrival")
+        row = FormRowDescriptor(tag: "arrivalAirportCode", rowType: .MultipleSelector, title: "Ke")
         row.configuration[FormRowDescriptor.Configuration.Options] = self.airportCodeArray
         row.configuration[FormRowDescriptor.Configuration.AllowsMultipleSelection] = false
         row.configuration[FormRowDescriptor.Configuration.TitleFormatterClosure] = { value in
@@ -178,23 +178,23 @@ class SearchFlightViewController: FormViewController {
         section1.addRow(row)
         
         //depart date
-        row = FormRowDescriptor(tag: "departDate", rowType: .Date, title: "Depart Date")
+        row = FormRowDescriptor(tag: "departDate", rowType: .Date, title: "Pergi")
         section1.addRow(row)
         
         let section2 = FormSectionDescriptor()
-        section2.headerTitle = "Number of Passengers"
+        section2.headerTitle = "Jumlah Penumpang"
         //adult
-        row = FormRowDescriptor(tag: "adultPassenger", rowType: .Number, title: "Adult")
+        row = FormRowDescriptor(tag: "adultPassenger", rowType: .Number, title: "Dewasa")
         row.value = "1"
         row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = ["textField.textAlignment" : NSTextAlignment.Right.rawValue]
         section2.addRow(row)
         //child
-        row = FormRowDescriptor(tag: "childPassenger", rowType: .Number, title: "Child")
+        row = FormRowDescriptor(tag: "childPassenger", rowType: .Number, title: "Anak")
         row.value = "0"
         row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = ["textField.textAlignment" : NSTextAlignment.Right.rawValue]
         section2.addRow(row)
         
-        row = FormRowDescriptor(tag: "infantPassenger", rowType: .Number, title: "Infant")
+        row = FormRowDescriptor(tag: "infantPassenger", rowType: .Number, title: "Bayi")
         row.value = "0"
         row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = ["textField.textAlignment" : NSTextAlignment.Right.rawValue]
         section2.addRow(row)
